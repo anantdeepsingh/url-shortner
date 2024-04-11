@@ -1,15 +1,36 @@
+const db=require('../models/url');
+require('dotenv').config();
+
 const shortid =require("shortid");
 const URL= require('../models/url');
+require('dotenv').config();
 async function handleGenerateNewShortURL(req,res){
-    const body=req.body;
-    if(!body.url) return res.status(400).json({error : 'url is required'})
+   const url=req.body.url;
+   if(!url){
+    return res.status(400).json({error:'Url is required'});
+   }
+   
+   
+//    const db = process.env.DB_NAME; 
+   const urlExists = await db.findOne({ redirectURL: url });
+
+    if (urlExists) {
+        // URL exists in the database
+        console.log('URL already exists:', urlExists);
+        // Handle the case where the URL exists, such as returning the existing short ID
+        return res.json({ id: urlExists.shortId });
+    }
+  else{
     const shortID=shortid();
     await URL.create({
         shortId: shortID,
-        redirectURL:body.url,
+        redirectURL:url,
         visitHistory:[],
     });
     return res.json({id:shortID});
+  }
+   
+
 }
 async function handleGetAnalytics(req,res){
     const shortId=req.params.shortId;
