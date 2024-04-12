@@ -27,7 +27,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
 app.get('/', async (req, res, next) => {
-    res.render('index')
+    //  res.sendFile(path.join(__dirname, 'index.html'));
+    res.render('index');
+    
 })
   
 app.use("/",urlRoute);
@@ -45,7 +47,7 @@ app.get('/:shortId', async (req, res) => {
         res.redirect(entry.redirectURL);
     } else {
         // Handle the case when entry is null or redirectURL is not defined
-        res.status(404).send("URL not found");
+        res.render('notfound')
     }
 });
 app.listen(PORT,() => console.log(`Server Started at PORT :${PORT}`));
