@@ -31,16 +31,22 @@ app.get('/', async (req, res, next) => {
 })
   
 app.use("/",urlRoute);
-app.get('/:shortId',async (req,res)=>{
-    const shortId =req.params.shortId;
-    const entry =await URL.findOneAndUpdate({
-        shortId
-    },{$push :{
-        visitHistory:{
-            timestamp:Date.now(),
-        } ,
-    }});
-    res.redirect(entry.redirectURL);
+
+// this feature may be used for the local host
+app.get('/:shortId', async (req, res) => {
+    const shortId = req.params.shortId;
+    const entry = await URL.findOneAndUpdate(
+        { shortId },
+        { $push: { visitHistory: { timestamp: Date.now() } } },
+        { new: true } // This option ensures that the updated document is returned
+    );
+
+    if (entry && entry.redirectURL) {
+        res.redirect(entry.redirectURL);
+    } else {
+        // Handle the case when entry is null or redirectURL is not defined
+        res.status(404).send("URL not found");
+    }
 });
 app.listen(PORT,() => console.log(`Server Started at PORT :${PORT}`));
 
