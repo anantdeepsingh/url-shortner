@@ -21,6 +21,7 @@ input[type='url'] {
   display: block;
   width: 40vw;
   height: 1.5vw;
+  margin: 10px auto;
 }
 
 input[type='submit'] {

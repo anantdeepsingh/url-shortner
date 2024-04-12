@@ -32,7 +32,6 @@ async function handleGenerateNewShortURL(req,res){
         short_url : `${req.headers.host}/${shortID}`
     });
   }
-   
 
 }
 async function handleGetAnalytics(req,res){
