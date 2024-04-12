@@ -8,14 +8,17 @@ body {
   color: #afb1c1;
 }
 
-.short-url {
-  margin: 20px;
+/* .short-url {
+  margin: 10px;
 }
 
 .short-url a {
-  color: #1a237e;
+  display: block;
+  color: hsl(160, 66%, 30%);
+  width: 40vw;
+  height: 1.5vw;
   text-decoration: none;
-}
+} */
 
 input[type='url'] {
   display: block;
@@ -49,4 +52,20 @@ p.error {
 .icon-container .fa-icon {
   font-size: 24px; /* Adjust the size of the icon */
   color: #333; /* Adjust the color of the icon */
+}
+.url-box {
+  
+  background-color: #f0f0f0;
+  border: 0px solid #ccc;
+  border-radius: 0px;
+  padding: 0.00005px;
+  height: 50px;
+  width: fit-content; /* Adjust width as needed */
+  margin: 10px auto; /* Adjust margin as needed */
+}
+
+.url-box a {
+  color: darkred;
+  text-decoration: none;
+
 }

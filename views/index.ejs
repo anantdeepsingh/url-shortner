@@ -20,10 +20,15 @@
       <input type="submit" value="shorten url" />
     </form>
 
-    <div class="short-url">
+    <!-- <div class="short-url">
       <% if (locals.short_url) { %>
       <p><%= short_url %> </p>
       <% } %>
+    </div> -->
+    <div class="url-box">
+      <% if (locals.short_url) { %>
+        <p><%= short_url %> </p>
+        <% } %>
     </div>
   </body>
 </html>
